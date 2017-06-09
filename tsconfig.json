@@ -1,7 +1,14 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "amd",
         "target": "es5",
-        "sourceMap": true
+        "sourceMap": true,
+        "outFile": "run/main.js",
+        "lib": [
+            "dom",
+            "es2015",
+            "es5",
+            "es6"
+        ]
     }
 }

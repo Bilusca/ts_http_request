@@ -1,18 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Http = (function () {
-    function Http() {
+    function Http(API) {
+        this.API = API;
+        this.http = new XMLHttpRequest();
     }
+    Http.prototype.get = function (pageRequest) {
+        this.http.open('GET', this.API + "/" + pageRequest, true);
+        this.http.send();
+        return this.response();
+    };
+    Http.prototype.response = function () {
+        this.http.onreadystatechange = function () {
+            if (this.http.readyState === 4 && this.http.status === 200) {
+                console.log(this.http.response);
+            }
+        };
+    };
     return Http;
 }());
 exports.Http = Http;
-var http = new XMLHttpRequest();
-var API;
-constructor(API, string);
-{
-    this.API = API;
-}
-function get(pageRequest) {
-    this.http.open('GET', this.API + "/" + server, true);
-}
 //# sourceMappingURL=Http.class.js.map

@@ -1,12 +1,23 @@
 export class Http {
-    let http = new XMLHttpRequest();
-    let API: string;
+    http: any;
+    API: string;
 
     constructor(API: string) {
         this.API = API;
+        this.http = new XMLHttpRequest();
     }
 
-    function get(pageRequest: string): object {
-        this.http.open('GET', `${this.API}/${server}`, true)
+    get(pageRequest: string): any {
+        this.http.open('GET', `${this.API}/${pageRequest}`, true);
+        this.http.send();
+        return this.response();
+    }
+
+    response(): any {
+        this.http.onreadystatechange = function() {
+            if(this.http.readyState === 4 && this.http.status === 200) {
+                console.log(this.http.response);
+            }
+        }
     }
 }
